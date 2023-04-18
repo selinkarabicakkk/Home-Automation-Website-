@@ -1,0 +1,415 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fbe3e8;
+}
+
+#headbar{
+  width: 80%;
+  padding: 20px;
+  display: flex;
+  position: relative;
+  margin: auto;
+}
+h1{
+  text-decoration: underline;
+  text-align: center;
+  padding : 2%;
+}
+h2{
+  text-align: center;
+  padding: 2%;
+  margin: 1%;
+}
+p{
+  text-align: center;
+  padding: 2%;
+  font-weight: bold;
+}
+#con1{
+  background-color: #B6E1E7;
+  margin: 5%;
+  padding: 5%;
+  border: 3px solid black;
+  border-radius: 1rem;
+  width: 45%;
+}
+#con2{
+  background-color: #B6E1E7;
+  margin: 5%;
+  padding: 5%;
+  border: 3px solid black;
+  border-radius: 1rem;
+  width: 45%;
+}
+#videos{
+  display: block;
+  margin: auto;
+  width: 450px;
+}
+@font-face{
+  font-family: 'Digital-7';
+  src:  url('fonts/digital-7.ttf') format('woff2'),   b ,g,mdrx
+  url('digital-7.woff') format('woff');
+}
+.clockdate-wrapper {
+  background: #141E30;  
+  background: -webkit-linear-gradient(to right, #243B55, #2196F3);  
+  background: linear-gradient(to right, #243B55, #2196F3); 
+  padding:25px;
+  max-width:310px;
+  width:100%;
+  text-align:center;
+  border: 3px solid black;
+  border-radius: 1rem;
+  margin:0 auto;
+
+}
+#clock{
+  font-family: Digital-7, 'sans-serif';
+  font-size:60px;
+  text-shadow:0px 0px 1px #fff;
+  color:#fff;
+}
+#clock span {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow:0px 0px 1px #333;
+  font-size:50px;
+  position:relative;
+  top:-5px;
+  left:10px;
+}
+#date {
+  letter-spacing:3px;
+  font-size:14px;
+  font-family:arial,sans-serif;
+  color:#fff;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+.switch input
+{
+  display: none;
+}
+
+.switch 
+{
+  display: inline-block;
+  border-radius: 30px;
+  background-color: #fff;
+  width: 60px; 
+  height: 30px; 
+  margin: 4px;
+  transform: translateY(50%);
+  position: relative;
+}
+
+.slider
+{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 30px;
+  box-shadow: 0 0 0 2px #777, 0 0 4px #777;
+  cursor: pointer;
+  border: 4px solid transparent;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.slider:before
+{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #777;
+  border-radius: 30px;
+  transform: translateX(-30px); 
+  transition: 0.2s;
+}
+
+input:checked + .slider:before
+{
+  transform: translateX(30px); 
+  background-color: limeGreen;
+}
+
+input:checked + .slider
+{
+  box-shadow: 0 0 0 2px limeGreen, 0 0 8px limeGreen;
+}
+#rooms{
+  display: flex;
+  justify-content: space-between;
+}
+
+.frame {
+  position: absolute;
+  width: 400px;
+  height: 200px;
+	overflow: hidden;
+  color: #333;
+	font-family: 'Rubik', Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.thermostat {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  
+  left: 100px;
+  background: #F2F2F2;
+  border-radius: 50%;
+  
+}
+
+.thermostat .control {
+  position: absolute;
+  z-index: 5;
+  width: 130px;
+  height: 130px;
+  top: 25%;
+  left: 35px;
+  background: #E6E6E6;
+  border-radius: 50%;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.7);
+}
+.thermostat .control .temp_outside {
+  position: absolute;
+  top: 25px;
+  left: 6px;
+  right: 0;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1rem;
+}
+.thermostat .control .temp_room {
+  position: absolute;
+  top: 34px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 60px;
+  color: #873183;
+  letter-spacing: -8px;
+  padding-right: 12px;
+  opacity: 1;
+  transform: translateX(0);
+  transition: all .5s ease-in-out;
+}
+.thermostat .control .temp_room span {
+  position: absolute;
+  top: 0;
+  right: 37px;
+  font-size: 2rem;
+  line-height: 34px;
+  padding: 3px 0 0 7px;
+	color: #8e2275;
+}
+.room {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1rem;
+}
+.thermostat .ring {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 10px;
+  left: 10px;
+  background: url("http://100dayscss.com/codepen/thermostat-gradient.jpg") center center no-repeat;
+  border-radius: 50%;
+  box-shadow: inset 2px 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+.thermostat .ring .bottom_overlay {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  top: 50%;
+  left: 50%;
+  background: #F2F2F2;
+  transform-origin: 0 0;
+  transform: rotate(45deg);
+  border-radius: 0 0 95px 0;
+}
+
+#slider {
+	position: absolute;
+	width: 170px;
+	height: 150px;
+	top: 22%;
+	left: 32%;
+	z-index: 1000;
+}
+
+#slider .rs-border  {
+    border-color: transparent;
+}
+.rs-control .rs-range-color, .rs-control .rs-path-color, .rs-control .rs-bg-color {
+    background-color: rgba(0, 0, 0, 0);
+}
+.rs-control .rs-handle {
+    background-color: fade-out(#522c6d, .2);
+}
+.rs-tooltip.edit, .rs-tooltip .rs-input, .rs-tooltip-text {
+	font-family: rubik, helvetica, sans-serif;
+	font-size: 3.3rem;
+	background: transparent;
+	color: #8e2275;
+	font-weight: 400;
+	top: 65%;
+	height: 3.9rem;
+	padding: 0 !important;
+	width: 4.5rem;
+}
+#slider:hover .rs-tooltip, .rs-tooltip:focus, .rs-tooltip-text:focus {
+	border: none;
+	transform: scale(1.1);
+	transition: .1s;
+}
+#slider .rs-transition  {
+  transition-timing-function: cubic-bezier(1.000, -0.530, 0.405, 1.425);
+}
+.fas {
+	animation: pulse 1s infinite;
+}
+@keyframes pulse {
+	50% {
+		transform: scale(.9);
+	}
+}
+[type="date"] {
+  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+
+label {
+  display: block;
+}
+input {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+  width: 190px;
+}
+#devices{
+    display: flex;
+    justify-content: space-between;
+  
+}
+.file-input {
+  display: inline-block;
+  text-align: left;
+  background: #fff;
+  padding: 16px;
+  width: 425px;
+  position: relative;
+  border: 3px solid black;
+  border-radius: 3px;
+}
+
+.file-input > [type='file'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.file-input > .button {
+  display: inline-block;
+  cursor: pointer;
+  background: #eee;
+  padding: 8px 16px;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+.file-input:hover > .button {
+  background: dodgerblue;
+  color: white;
+}
+
+.file-input > .label {
+  color: #333;
+  white-space: nowrap;
+  opacity: .3;
+}
+
+.file-input.-chosen > .label {
+  opacity: 1;
+}
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid black;
+  border-right: none;
+  padding: 5px;
+  height:36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 3px solid black;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.wrap{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
