@@ -10,12 +10,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
-<div>
-  <button>
-    <?php
-    echo "<a href='consumerlogout.php' style='color:black; background-color:#b1cbbb; border:1px solid red; padding:5px 5px;'> LOG OUT</a>";  //kullanıcı çıkış yapmak isteyince bu butona basacak
-    ?>
-  </button>
     <div id = "headbar">
         <div id="clockdate">
             <div class="clockdate-wrapper">
@@ -26,6 +20,7 @@
         <div>
             <img src="./images/profilephoto.png">
             <h2>ProducerName</h2>
+            <input type="submit" onclick="window.location.href='./producerlogin.php';" value="Log Out" style="margin: auto; background-color: #2196F3;color: white;border: 2px solid black;cursor: pointer;">
         </div>
         <div id="weather">
             <iframe src="//www.hava.one/widget/widget_frame?id=323777&days=4&bcolor=2196F3&hbkcolor=2196F3&w=310" scrolling="no" frameborder="0" style="border: 3px solid black;overflow:hidden;height:200px;width:310px;" allowTransparency="true"></iframe>
@@ -33,49 +28,49 @@
         </div>
     </div>  
     <div style="display: flex;">
-        <div id="con1">
+        <div id="lightingcon1">
             <h1>Lighting</h1>
             <div id="rooms" style="justify-content: space-between;">
                 <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Kitchen</h2>
-                <label class="switch" style="margin-left: 3.5rem;">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                  <h2 style="padding-top: 1.25rem;">ON</h2>
+                <main>
+                  <input class="l" type="checkbox">
+                </main>
             </div>
             <div id="rooms" style="justify-content: space-between;">
                 <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Living Room</h2>
-                <label class="switch"style="margin-left: 0.5rem;">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                  <h2 style="padding-top: 1.25rem;">OFF</h2>
+                <main>
+                  <input class="l" type="checkbox">
+                </main>
+                  
             </div>
             <div id="rooms" style="justify-content: space-between;">
                 <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Bathroom</h2>
-                <label class="switch" style="margin-left: 1.5rem;">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                  <h2 style="padding-top: 1.25rem;">ON</h2>
+                <main>
+                  <input class="l" type="checkbox">
+                </main>
             </div>
             <div id="rooms" style="justify-content: space-between;">
                 <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Bedroom</h2>
-                <label class="switch" style="margin-left: 2.75rem;">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                  </label>
-                  <h2 style="padding-top: 1.25rem;">OFF</h2>
+                <main>
+                  <input class="l" type="checkbox">
+                </main>
+                  
             </div>
             <h2 style="text-decoration-line: underline;margin-top: 4rem;">Time the lights are turned off: </h2>
+            <h3 style="text-align: center;">
+              Kitchen: 19.04.2023 || 16.24
+          </h3>
             <h3 style="text-align: center;">
                 Living Room: 18.04.2023 || 01.11
             </h3>
             <h3 style="text-align: center;">
+              Bathroom: 19.04.2023 || 03.37
+          </h3>
+            <h3 style="text-align: center;">
                 Bedroom: 18.04.2023 || 00.57
             </h3>
         </div>
-        <div id="con1" >
+        <div id="eleccon1" >
             <h1>Electronic Devices</h1>
             <div id="devices">
                 <h2>Television</h2>
@@ -83,7 +78,7 @@
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                  <h2 style="padding-top: 1.25rem;">ON</h2>
+                  
             </div>
             <div id="devices">
                 <h2>Kettle</h2>
@@ -91,7 +86,7 @@
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                  <h2 style="padding-top: 1.25rem;">OFF</h2>
+                  
             </div>
             <div id="devices">
                 <h2>Dishwasher</h2>
@@ -99,7 +94,7 @@
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                  <h2 style="padding-top: 1.25rem;">OFF</h2>
+    
             </div>
             <div id="devices">
                 <h2>Oven</h2>
@@ -107,7 +102,7 @@
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                  <h2 style="padding-top: 1.25rem;">ON</h2>
+                  
             </div>
             <div id="devices">
                 <h2>Washing Machine</h2>
@@ -115,7 +110,7 @@
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                  <h2 style="padding-top: 1.25rem;">OFF</h2>
+                  
             </div>
             <div id="devices">
                 <h2>Vacuum Cleaner</h2>
@@ -123,9 +118,12 @@
                     <input type="checkbox">
                     <span class="slider"></span>
                   </label>
-                  <h2 style="padding-top: 1.25rem;">ON</h2>
+         
             </div>
             <h2 style="text-decoration-line: underline;margin-top: 0.5rem;">Time the electronic devices are turned off: </h2>
+            <h3 style="text-align: center;">
+              Television: 16.04.2023 || 21.51
+          </h3>
             <h3 style="text-align: center;">
                 Kettle: 17.04.2023 || 12.11
             </h3>
@@ -133,42 +131,139 @@
                 Dishwasher: 17.04.2023 || 23.42
             </h3>
             <h3 style="text-align: center;">
+              Oven: 19.04.2023 || 15.31
+          </h3>
+            <h3 style="text-align: center;">
                 Washing Machine: 17.04.2023 || 21.04
             </h3>
+            <h3 style="text-align: center;">
+              Robotic Vacuum Cleaner: 20.04.2023 || 18.53
+          </h3>
         </div>
     </div>
     <div style="display: flex;">
-        <div id="con1" >
-            <h1>Electricity Consumption</h1>
-            <h2>This month you have consumed an average of 65 kWh of electricity per day.</h2>
-        </div>
-        <div id="con1" >
-            <h1>Water Consumption</h1>
-            <h2>This month you have spent an average of 144 liters of water per day</h2>
-        </div>
-    </div>
+        <div id="watercon2">
+          <h1 style="margin-top: -1rem;margin-bottom: 1rem;">
+            Water Consumption
+          </h1>
+          <div id="consumption-container">
+            <div class="year-stats">
+              <div class="month-group">
+                <div class="bar h-25"></div>
+                <p class="month">Jan</p>
+              </div>
+              <div class="month-group">
+                <div class="bar h-50"></div>
+                <p class="month">Feb</p>
+              </div>
+              <div class="month-group">
+                <div class="bar h-25"></div>
+                <p class="month">Mar</p>
+              </div>
+              <div class="month-group">
+                <div class="bar h-100"></div>
+                <p class="month">Apr</p>
+              </div>
+              <div class="month-group selected">
+                <div class="bar h-75"></div>
+                <p class="month">May</p>
+              </div>
+              <div class="month-group">
+                <div class="bar h-25"></div>
+                <p class="month">Jun</p>
+              </div>
+              <div class="month-group">
+                <div class="bar h-100"></div>
+                <p class="month">Jul</p>
+              </div>
+              </div>
+              <div class="info">
+                <p>Most consumed months <br /><span>April&July</span></p>
+                <p>Total amount of electricity consumed <span><br />122 kWh</span></p>
+                <p>Monthly bill <span>$92</span></p>
+              </div>
+            </div>
+            </div>
+            <div id="ecocon1">
+              <h1 style="margin-top: -1rem;margin-bottom: 1rem;">
+                Electricity Consumption
+              </h1>
+              <div id="consumption-container">
+                <div class="year-stats">
+                  <div class="month-group">
+                    <div class="bar h-100"></div>
+                    <p class="month">Jan</p>
+                  </div>
+                  <div class="month-group">
+                    <div class="bar h-50"></div>
+                    <p class="month">Feb</p>
+                  </div>
+                  <div class="month-group">
+                    <div class="bar h-75"></div>
+                    <p class="month">Mar</p>
+                  </div>
+                  <div class="month-group">
+                    <div class="bar h-25"></div>
+                    <p class="month">Apr</p>
+                  </div>
+                  <div class="month-group selected">
+                    <div class="bar h-100"></div>
+                    <p class="month">May</p>
+                  </div>
+                  <div class="month-group">
+                    <div class="bar h-50"></div>
+                    <p class="month">Jun</p>
+                  </div>
+                  <div class="month-group">
+                    <div class="bar h-75"></div>
+                    <p class="month">Jul</p>
+                  </div>
+                  </div>
+                  <div class="info">
+                    <p>Most consumed months <br /><span>January&May</span></p>
+                <p>Total amount of electricity consumed <span><br />26m³</span></p>
+                <p>Monthly bill <span>$102</span></p>
+                  </div>
+                </div>
+                </div>
+    
+       </div>
     <div style="display: flex;">
-        <div id="con1" >
+        <div id="musiccon2" >
             <h1>Music</h1>
-            <div style="display: flex;">
-                <h2 style="text-align: left;">Playlist: </h2>
-                <h3 style="margin-top: 1rem;">playlist3.mp4</h3>
+            <div class="mb-3">
+              
+              <label for="formFileSm" class="form-label" style="font-size: large;font-weight: bolder;">Change Playlist:</label>
+              <input style="width: 100%;" class="form-control form-control-sm" id="formFileSm" type="file">
             </div>
-            <div style="display: flex;">
-                <h2 style="text-align: left;">Music Mode: </h2>
-                <h3 style="margin-top: 1rem;">Bass Boosted</h3>
+            <label for="musicDataList" class="form-label" style="font-size: large;font-weight: bolder;">Music Mode:</label>
+            <input class="form-control" list="musicOptions" id="musicDataList" placeholder="Modes">
+            <datalist id="musicOptions">
+             <option value="Normal">
+             <option value="Bass Boosted">
+             <option value="Chill">
+              <option value="Party">
+            </datalist>
+            <div style="display: flex;margin-bottom: 5%;">
+              <h2 style="text-align: left;">Volume:</h2>
+              <input type="range" value="0">
             </div>
+            <h3>Recently opened playlist: playlist5.mp3 <br>Recently selected music mode: Chill</h3>
         </div>
-        <div id="con1" >
-            <h1>Temperature</h1>
-            <div style="display: flex;">
-                <h2 style="text-align: left;margin-top: 3rem;">Temperature of the house:</h2>
-                <h2 style="margin-top: 3rem;">23Â°C</h2>
+        <div id="aircon2" >
+            <h1>Air Conditioner</h1>
+            <div style="margin-top: 10%;">
+                <h2 style="text-align: center;">Temperature of the house:</h2>
+                <input style="margin: auto;" id=celciusinput type=number value="23" min=15 max=45>
             </div>
+            <div style="margin-top: 10%;">
+              <h2 style="text-align: center;">Temperature of the air conditioner:</h2>
+              <input style="margin: auto;" id=celciusinput type=number value="23" min=15 max=45>
+          </div>
         </div>
     </div>
     <div style="display: flex;">
-        <div id="con1">
+        <div id="cctvcon1">
             <h1>Camera States</h1>
             <div style="display: flex;margin-top: 5%;margin-bottom: 5%;">
                 <h2>CAM1:</h2>
@@ -188,10 +283,10 @@
             <div style="display: flex;margin-top: 5%;margin-bottom: 5%;">
                 <h2>CAM4:</h2>
                 <h3 style="margin-top: 1rem;">Not recording</h3>
-                <i class='fa fa-video-camera'style="margin-top: 1.25rem;margin-left: 1rem;color: #969696;"></i>
+                <i class='fa fa-video-camera'style="margin-top: 1.25rem;margin-left: 1rem;color: #dark grey;"></i>
             </div>
         </div>
-        <div id="con2">
+        <div id="doorcon2">
             <h1>Door</h1>
             <div>
                 <h2>Time when the door was last knocked:</h2>
