@@ -40,6 +40,21 @@ while ($row = $result->fetch_assoc()) {
     echo "Room Camera: " . $roomCamera . "<br>";
     echo "Room Camera: " . $aircon . "<br>";
 }
+
+function getRoomTemperature($roomName) {
+    global $connection; // Assuming you have the database connection variable defined globally
+
+    // Query to retrieve the kitchen's room temperature
+    $query = "SELECT room_temperature FROM rooms WHERE room_name = $roomName";
+    $result = $connection->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['room_temperature'];
+    } else {
+        return "N/A"; // Return a default value if the temperature is not available or the query fails
+    }
+}
 // Close the database connection
 $connection->close();
 
