@@ -1,7 +1,107 @@
 <?php
 
 session_start(); //Start new or resume existing session 
+$host = 'localhost'; // Hostname of the MySQL server
+$dbname = 'homeautomationsystem'; // Name of your MySQL database
+$username = 'root'; // MySQL username
+$password = ''; // MySQL password
 
+// Create a connection
+$connection = new mysqli($host, $username, $password, $dbname);
+
+// Check for connection errors
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+
+// Set character set to UTF-8 (optional)
+$connection->set_charset("utf8");
+
+$query = "SELECT * FROM `rooms`;";
+$result = $connection->query($query);
+
+
+
+// Check for query errors
+if (!$result) {
+    die("Query failed: " . $connection->error);
+}
+// Fetch and display the data
+while ($row = $result->fetch_assoc()) {
+    // Access individual columns by their names
+    $roomName = $row['Room_Name'];
+    $roomTemperature = $row['Temperature'];
+    $roomLight = $row['Light'];
+    $roomCamera = $row['Camera'];
+    $aircon = $row['airCon'];
+
+    // Echo the data or use it as desired
+    // echo "Room Name: " . $roomName . "<br>";
+    // echo "Room Temperature: " . $roomTemperature . "<br>";
+    // echo "Room Light: " . $roomLight . "<br>";
+    // echo "Room Camera: " . $roomCamera . "<br>";
+    // echo "Room Camera: " . $aircon . "<br>";
+    // echo "<script>console.log('Debug Objects: " . $roomName . "' );</script>";
+}
+
+
+// // Step 2: Retrieve user input
+// $roomName = $_POST['roomName'];
+// // Step 3: Validate and sanitize user input (example)
+// $roomName = mysqli_real_escape_string($connection, $roomName);
+// // Step 4: Prepare SQL statement
+// $sql = "INSERT INTO rooms (room_name) VALUES ('$roomName')";
+// // Step 5: Execute SQL statement
+// if (mysqli_query($connection, $sql)) {
+//   echo "Data stored successfully!";
+// } else {
+//   echo "Error: " . mysqli_error($connection);
+// }
+
+
+ // DATAYI CEKTIGIN VE GOSTERDIGIN YER
+function getRoomTemperature($roomName) {
+    global $connection; // Assuming you have the database connection variable defined globally
+
+    // Query to retrieve the kitchen's room temperature
+
+    
+    $query = "SELECT Temperature FROM rooms WHERE Room_Name = '$roomName' ";   //
+    $result = $connection->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['Temperature'];
+    } else {
+        return "N/A"; // Return a default value if the temperature is not available or the query fails
+    }
+}
+
+
+function setRoomTemperature($roomName, $newTemp) { 
+  global $connection; // Assuming you have the database connection variable defined globally
+
+  // Query to update the kitchen's room temperature
+  
+  $query = "UPDATE rooms SET Temperature = '$newTemp' WHERE Room_Name = '$roomName' ";   
+  $result = $connection->query($query);
+
+  if ($result && $result->num_rows > 0) {
+      echo "Success";
+      //$row = $result->fetch_assoc();
+      //return $row['Temperature'];
+  } else {
+      //return "N/A"; // Return a default value if the temperature is not available or the query fails
+  }
+}
+
+function setLighting($roomName) {
+  global $connection; // Assuming you have the database connection variable defined globally
+  
+  $query ="UPDATE rooms SET Light = CASE WHEN Light = '1' THEN '0' WHEN Light = '0' THEN '1' END WHERE Room_Name = '$roomName'";   //
+  $result = $connection->query($query);
+
+}
 ?>
 
     <!DOCTYPE html>
@@ -13,6 +113,7 @@ session_start(); //Start new or resume existing session
     <title>Home Automation</title>
     <link rel="stylesheet" href="consumerhome.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.css" rel="stylesheet" />
+
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
@@ -108,12 +209,16 @@ session_start(); //Start new or resume existing session
             <h2 style="margin-top: 1rem;">Kitchen</h2>
             <main>
               <input class="l" type="checkbox">
+              
             </main>
         </div>
+        <form id="lightForm" action="consumerprofile.php" method="POST">
         <div id="rooms">
             <h2 style="margin-top: 1rem;">Living Room</h2>
             <main>
-              <input class="l" type="checkbox">
+            <input class="l" type="checkbox" id="lightCheckbox" type="checkbox" onchange="<?php echo setLighting("LivingRoom"); ?>"> 
+
+              <!-- <span></span> -->
             </main>
         </div>
         <div id="rooms">
@@ -128,21 +233,30 @@ session_start(); //Start new or resume existing session
               <input class="l" type="checkbox">
             </main>
         </div>
+        </form>
     </div>
     <div id="aircon2">
         <h1>Air Conditioner</h1>
         <p style="margin-bottom: 10px;">You can decrease or increase the temperature of the house by controlling the air conditioner from here.</p>
         <div class="frame" style="margin-left: 1rem;margin-top: 1rem;margin-bottom: 1rem;">
+        
             <div id="slider" class="rslider"></div>
             <div class="thermostat">
+              
                 <div class="ring">
-                    <div class="bottom_overlay"></div>
+                  
+                    <div class="bottom_overlay">
+                      
+                    </div>
                 </div>
                 <div class="control">
-                    <div class="temp_outside">23°</div>
+                  
+                    <div class="temp_outside"><span><?php echo getRoomTemperature("Kitchen"); ?></span> </div>
+                    
                     <div class="temp_room"><span>°</span></div>
                     <div class="room">Home</div>
                 </div>
+                
             </div>
         </div>
     </div>
