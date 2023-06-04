@@ -53,28 +53,6 @@ function getRoomTemperature($roomName)
   }
 }
 
-
-// $roomlight = $_POST['rooms'];
-// $lightStatus = $_POST['Light'];
-
-
-// $room = $_POST['room'];
-// $lightStatus = $_POST['light'];
-// // Update the light status in the database
-// $sql2 = "UPDATE rooms SET Light = 0 WHERE Room_Name = 'Kitchen'";
-
-// if ($connection->query($sql2) === TRUE) {
-//   echo "Light status updated successfully.";
-// } else {
-//   echo "Error updating light status: " . $connection->error;
-// }
-
-// // Log the event to a text file
-// $logMessage = "$room's Light is " . ($lightStatus == 1 ? "on" : "off") . " at " . date("d.m.y H:i") . PHP_EOL;
-// $logFile = "log.txt";
-
-// file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
-
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -141,314 +119,289 @@ function getRoomTemperature($roomName)
 
 <body>
 
-  <head>
-    <title>Light Controller</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  </head>
 
-  <body>
-    <div class="container mt-5">
-      <h1>Light Controller</h1>
-      <form method="POST" action="">
-        <div class="form-group">
-          <label for="room">Select a room:</label>
-          <select class="form-control" name="room" id="room">
-            <option value="kitchen">Kitchen</option>
-            <option value="livingroom">Livingroom</option>
-            <option value="bedroom">Bedroom</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="light">Light status:</label>
-          <select class="form-control" name="light" id="light">
-            <option value="0">Off</option>
-            <option value="1">On</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Update Light</button>
-      </form>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  </body>
-  <div id="headbar">
-    <div id="clockdate">
-      <div class="clockdate-wrapper">
-        <div id="clock"></div>
-        <div id="date"></div>
-      </div>
-    </div>
-    <div style="text-align: center">
-      <img src="./images/profilephoto.png">
-      <h2>
-        Username
-      </h2>
-      <input type="submit" onclick="window.location.href='./consumerlogin.php';" value="Log Out"
-        style="margin: auto; background-color: #2196F3;color: white;border: 2px solid black;cursor: pointer;">
-    </div>
-    <div id="weather">
-      <iframe src="//www.hava.one/widget/widget_frame?id=323777&days=4&bcolor=2196F3&hbkcolor=2196F3&w=310"
-        scrolling="no" frameborder="0" style="border: 3px solid black;overflow:hidden;height:200px;width:310px;"
-        allowTransparency="true"></iframe>
-      <noscript><a href="http://www.hava.one">hava.one</a></noscript>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+<div id="headbar">
+  <div id="clockdate">
+    <div class="clockdate-wrapper">
+      <div id="clock"></div>
+      <div id="date"></div>
     </div>
   </div>
-  <h1 style="font-size: 3rem;text-decoration: none;">WELCOME! HOME SWEET HOME</h1>
-  <div style="display: flex;">
-    <div id="emergencycon1">
-      <h1>Emergency Calls</h1>
-      <p>You can make emergency calls.</p>
-      <div style="display: flex;justify-content: space-between;margin-top: 1rem;">
-        <h2 style="margin-left: 3rem;">Police</h2>
-        <button class="button-82-pushable" role="button">
-          <span class="button-82-shadow"></span>
-          <span class="button-82-edge"></span>
-          <span class="button-82-front text">
-            Call
-          </span>
-        </button>
+  <div style="text-align: center">
+    <img src="./images/profilephoto.png">
+    <h2>
+      Username
+    </h2>
+    <input type="submit" onclick="window.location.href='./consumerlogin.php';" value="Log Out"
+      style="margin: auto; background-color: #2196F3;color: white;border: 2px solid black;cursor: pointer;">
+  </div>
+  <div id="weather">
+    <iframe src="//www.hava.one/widget/widget_frame?id=323777&days=4&bcolor=2196F3&hbkcolor=2196F3&w=310" scrolling="no"
+      frameborder="0" style="border: 3px solid black;overflow:hidden;height:200px;width:310px;"
+      allowTransparency="true"></iframe>
+    <noscript><a href="http://www.hava.one">hava.one</a></noscript>
+  </div>
+</div>
+<h1 style="font-size: 3rem;text-decoration: none;">WELCOME! HOME SWEET HOME</h1>
+<div style="display: flex;">
+  <div id="emergencycon1">
+    <h1>Emergency Calls</h1>
+    <p>You can make emergency calls.</p>
+    <div style="display: flex;justify-content: space-between;margin-top: 1rem;">
+      <h2 style="margin-left: 3rem;">Police</h2>
+      <button class="button-82-pushable" role="button">
+        <span class="button-82-shadow"></span>
+        <span class="button-82-edge"></span>
+        <span class="button-82-front text">
+          Call
+        </span>
+      </button>
 
-      </div>
-      <div style="display: flex;justify-content: space-between;margin-top: 1rem;margin-bottom: 1rem;">
-        <h2 style="margin-left: 3rem;">Ambulance</h2>
-        <button class="button-82-pushable" role="button">
-          <span class="button-82-shadow"></span>
-          <span class="button-82-edge"></span>
-          <span class="button-82-front text">
-            Call
-          </span>
-        </button>
-
-      </div>
-      <div style="display: flex;justify-content: space-between;">
-        <h2 style="margin-left: 3rem;">Fire Station</h2>
-        <button class="button-82-pushable" role="button">
-          <span class="button-82-shadow"></span>
-          <span class="button-82-edge"></span>
-          <span class="button-82-front text">
-            Call
-          </span>
-        </button>
-
-      </div>
     </div>
-    <div id="gascon2">
-      <h1>Gas Cooker</h1>
-      <p>You can turn gas cookers on or off.</p>
-      <div style="display: flex;">
-        <h2 style="text-align: left;">Gas Cooker 1</h2>
-        <input type="range" value="0">
-      </div>
-      <div style="display: flex;">
-        <h2 style="text-align: left;">Gas Cooker 2</h2>
-        <input type="range" value="0">
-      </div>
-      <div style="display: flex;">
-        <h2 style="text-align: left;">Gas Cooker 3</h2>
-        <input type="range" value="0">
-      </div>
-      <div style="display: flex;">
-        <h2 style="text-align: left;">Gas Cooker 4</h2>
-        <input type="range" value="0">
-      </div>
-    </div>
+    <div style="display: flex;justify-content: space-between;margin-top: 1rem;margin-bottom: 1rem;">
+      <h2 style="margin-left: 3rem;">Ambulance</h2>
+      <button class="button-82-pushable" role="button">
+        <span class="button-82-shadow"></span>
+        <span class="button-82-edge"></span>
+        <span class="button-82-front text">
+          Call
+        </span>
+      </button>
 
+    </div>
+    <div style="display: flex;justify-content: space-between;">
+      <h2 style="margin-left: 3rem;">Fire Station</h2>
+      <button class="button-82-pushable" role="button">
+        <span class="button-82-shadow"></span>
+        <span class="button-82-edge"></span>
+        <span class="button-82-front text">
+          Call
+        </span>
+      </button>
+
+    </div>
+  </div>
+  <div id="gascon2">
+    <h1>Gas Cooker</h1>
+    <p>You can turn gas cookers on or off.</p>
+    <div style="display: flex;">
+      <h2 style="text-align: left;">Gas Cooker 1</h2>
+      <input type="range" value="0">
+    </div>
+    <div style="display: flex;">
+      <h2 style="text-align: left;">Gas Cooker 2</h2>
+      <input type="range" value="0">
+    </div>
+    <div style="display: flex;">
+      <h2 style="text-align: left;">Gas Cooker 3</h2>
+      <input type="range" value="0">
+    </div>
+    <div style="display: flex;">
+      <h2 style="text-align: left;">Gas Cooker 4</h2>
+      <input type="range" value="0">
+    </div>
   </div>
 
+</div>
+
+</div>
+<div style="display: flex;">
+  <div id="lightingcon1">
+    <h1>Lighting Controller</h1>
+    <p>You can control the lighting system.</p>
+
+    <head>
+      <title>Light Controller</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
+
+    <body>
+      <div class="container mt-2">
+        <form method="POST" action="light_controller.php">
+          <div class="form-group">
+            <label for="room">Select a room:</label>
+            <select class="form-control" name="room" id="room">
+              <option value="kitchen">Kitchen</option>
+              <option value="livingroom">Livingroom</option>
+              <option value="bedroom">Bedroom</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="light">Light status:</label>
+            <select class="form-control" name="light" id="light">
+              <option value="0">Off</option>
+              <option value="1">On</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Update Light</button>
+        </form>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </body>
   </div>
-  <div style="display: flex;">
-    <div id="lightingcon1">
-      <h1>Lighting Controller</h1>
-      <p>You can control the lighting system.</p>
+  <div id="aircon2">
+    <h1>Air Conditioner</h1>
+    <p style="margin-bottom: 10px;">You can decrease or increase the temperature of the house by controlling the air
+      conditioner from here.</p>
+    <title>Update Room Temperature</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
 
-      <head>
-        <title>Light Controller</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-      </head>
+    <body>
+      <div class="container">
+        <form method="POST" action="">
+          <div class="form-group">
+            <label for="room">Select Room:</label>
+            <select class="form-control" name="room" id="room">
+              <option value="Kitchen">Kitchen</option>
+              <option value="Livingroom">Livingroom</option>
+              <option value="Bedroom">Bedroom</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="temperature">Enter Temperature:</label>
+            <input type="number" class="form-control" name="temperature" id="temperature">
+          </div>
+          <button type="submit" class="btn btn-primary" name="submit">Update</button>
+        </form>
 
-      <body>
-        <div class="container mt-2">
-          <form method="POST" action="light_controller.php">
-            <div class="form-group">
-              <label for="room">Select a room:</label>
-              <select class="form-control" name="room" id="room">
-                <option value="kitchen">Kitchen</option>
-                <option value="livingroom">Livingroom</option>
-                <option value="bedroom">Bedroom</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="light">Light status:</label>
-              <select class="form-control" name="light" id="light">
-                <option value="0">Off</option>
-                <option value="1">On</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Update Light</button>
-          </form>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-      </body>
-    </div>
-    <div id="aircon2">
-      <h1>Air Conditioner</h1>
-      <p style="margin-bottom: 10px;">You can decrease or increase the temperature of the house by controlling the air
-        conditioner from here.</p>
-      <title>Update Room Temperature</title>
+      </div>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <style>
+        .room-temperature-table {
+          width: 100%;
+          background-color: rgba(255, 255, 255, 0.7);
+          /* Transparent white background */
+          margin-top: 5%;
+        }
+
+        .room-temperature-table td {
+          text-align: center;
+          vertical-align: middle;
+        }
+      </style>
       </head>
 
       <body>
         <div class="container">
-          <form method="POST" action="">
-            <div class="form-group">
-              <label for="room">Select Room:</label>
-              <select class="form-control" name="room" id="room">
-                <option value="Kitchen">Kitchen</option>
-                <option value="Livingroom">Livingroom</option>
-                <option value="Bedroom">Bedroom</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="temperature">Enter Temperature:</label>
-              <input type="number" class="form-control" name="temperature" id="temperature">
-            </div>
-            <button type="submit" class="btn btn-primary" name="submit">Update</button>
-          </form>
+
+
+          <?php
+          // Fetch the current temperature for all rooms from the database
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "homeautomationsystem";
+
+          // Create a connection
+          $conn = new mysqli($servername, $username, $password, $dbname);
+
+          // Check connection
+          if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          }
+
+          // Fetch the current temperature for all rooms
+          $sql = "SELECT Room_Name, Temperature FROM rooms";
+          $result = $conn->query($sql);
+
+          // Display the temperature dashboard
+          if ($result && $result->num_rows > 0) {
+            echo '<div class="table-responsive">';
+            echo '<table class="table room-temperature-table">';
+            echo '<thead>';
+            // echo '<tr>';
+            // echo '<th>Room</th>';
+            // echo '<th>Current Temperature</th>';
+            // echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            // Iterate over the rows and display the data
+            while ($row = $result->fetch_assoc()) {
+              $roomName = $row['Room_Name'];
+              $currentTemperature = $row['Temperature'];
+
+              echo '<tr>';
+              echo '<th>' . $roomName . '</th>';
+              echo '<th>' . $currentTemperature . '°C</th>';
+              echo '</tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+            echo '</div>';
+          } else {
+            echo '<div class="text-center">No data available</div>';
+          }
+
+          // Close the database connection
+          $conn->close();
+          ?>
 
         </div>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <style>
-          .room-temperature-table {
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.7);
-            /* Transparent white background */
-            margin-top: 5%;
-          }
 
-          .room-temperature-table td {
-            text-align: center;
-            vertical-align: middle;
-          }
-        </style>
-        </head>
+  </div>
 
-        <body>
-          <div class="container">
-
-
-            <?php
-            // Fetch the current temperature for all rooms from the database
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "homeautomationsystem";
-
-            // Create a connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-              die("Connection failed: " . $conn->connect_error);
-            }
-
-            // Fetch the current temperature for all rooms
-            $sql = "SELECT Room_Name, Temperature FROM rooms";
-            $result = $conn->query($sql);
-
-            // Display the temperature dashboard
-            if ($result && $result->num_rows > 0) {
-              echo '<div class="table-responsive">';
-              echo '<table class="table room-temperature-table">';
-              echo '<thead>';
-              // echo '<tr>';
-              // echo '<th>Room</th>';
-              // echo '<th>Current Temperature</th>';
-              // echo '</tr>';
-              echo '</thead>';
-              echo '<tbody>';
-
-              // Iterate over the rows and display the data
-              while ($row = $result->fetch_assoc()) {
-                $roomName = $row['Room_Name'];
-                $currentTemperature = $row['Temperature'];
-
-                echo '<tr>';
-                echo '<th>' . $roomName . '</th>';
-                echo '<th>' . $currentTemperature . '°C</th>';
-                echo '</tr>';
-              }
-
-              echo '</tbody>';
-              echo '</table>';
-              echo '</div>';
-            } else {
-              echo '<div class="text-center">No data available</div>';
-            }
-
-            // Close the database connection
-            $conn->close();
-            ?>
-
-          </div>
-
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </div>
 </div>
 <div style="display: flex;">
   <div id="eleccon1">
     <h1>Electronic Devices</h1>
     <p>You can control all electronic devices in the house from here.</p>
-    <div id="devices" style="margin-bottom: 3%;">
-      <h2>Television</h2>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div id="devices" style="margin-bottom: 3%;">
-      <h2>Kettle</h2>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div id="devices" style="margin-bottom: 3%;">
-      <h2>Dishwasher</h2>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div id="devices" style="margin-bottom: 3%;">
-      <h2>Oven</h2>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div id="devices" style="margin-bottom: 3%;">
-      <h2>Dishwasher</h2>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-    </div>
-    <div id="devices" style="margin-bottom: 3%;">
-      <h2>Robotic Vacuum Cleaner</h2>
-      <label class="switch">
-        <input type="checkbox">
-        <span class="slider"></span>
-      </label>
-    </div>
+
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
+
+    <head>
+      <title>Device Controller</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
+
+    <body>
+      <div class="container mt-5" ;>
+        <form method="POST" action="elecdevice_controller.php">
+          <div class="form-group">
+            <label for="room">Select a device:</label>
+            <select class="form-control" name="room" id="room">
+              <option value="Television">Television</option>
+              <option value="Kettle">Kettle</option>
+              <option value="Dishwasher">Dish Washer</option>
+              <option value="Oven">Oven</option>
+              <option value="WashingMachine">Washing Machine</option>
+              <option value="VacuumCleaner">Vacuum Cleaner</option>
+            </select>
+          </div>
+          <div style="margin-left: 20px;">
+            <div class="form-check ; container ml-15">
+              <input class="form-check-input" type="radio" name="light" id="lightOn" value="1" checked>
+              <label class="form-check-label" for="lightOn">On</label>
+            </div>
+            <div class="form-check" style="padding-left: 20px;">
+              <input class="form-check-input" type="radio" name="light" id="lightOff" value="0">
+              <label class="form-check-label" for="lightOff">Off</label>
+            </div>
+          </div>
+          <div class="container mt-8">
+            <button type="submit" class="btn btn-primary" class="container mt-20">Update Device</button>
+          </div>
+        </form>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </body>
 
   </div>
   <div id="musiccon2">

@@ -33,118 +33,170 @@
       <noscript><a href="http://www.hava.one">hava.one</a></noscript>
     </div>
   </div>
-  <div style="display: flex;">
+  <div style="display: flex; ">
     <div id="lightingcon1">
       <h1>Lighting</h1>
-      <div id="rooms" style="justify-content: space-between;">
-        <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Kitchen</h2>
-        <main>
-          <input class="l" type="checkbox">
-        </main>
-      </div>
-      <div id="rooms" style="justify-content: space-between;">
-        <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Living Room</h2>
-        <main>
-          <input class="l" type="checkbox">
-        </main>
+      <div style="margin-top: 10%;">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+          .room-temperature-table {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Transparent white background */
+            margin-top: 5%;
+          }
 
-      </div>
-      <div id="rooms" style="justify-content: space-between;">
-        <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Bathroom</h2>
-        <main>
-          <input class="l" type="checkbox">
-        </main>
-      </div>
-      <div id="rooms" style="justify-content: space-between;">
-        <h2 style="margin-top: 1rem;margin-bottom: 1rem;">Bedroom</h2>
-        <main>
-          <input class="l" type="checkbox">
-        </main>
+          .room-temperature-table td {
+            text-align: center;
+            vertical-align: middle;
+          }
+        </style>
+        </head>
 
+        <body>
+          <div class="container">
+
+
+            <?php
+            // Fetch the current temperature for all rooms from the database
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "homeautomationsystem";
+
+            // Create a connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Fetch the current temperature for all rooms
+            $sql = "SELECT Room_Name, Light FROM rooms";
+            $result = $conn->query($sql);
+
+            // Display the temperature dashboard
+            if ($result && $result->num_rows > 0) {
+              echo '<div class="table-responsive">';
+              echo '<table class="table room-temperature-table">';
+              echo '<thead>';
+              echo '</thead>';
+              echo '<tbody>';
+
+              // Iterate over the rows and display the data
+              while ($row = $result->fetch_assoc()) {
+                $roomName = $row['Room_Name'];
+                $currentLight = $row['Light'];
+                $lightStatus = ($currentLight == 1) ? 'On' : 'Off';
+
+                echo '<tr>';
+                echo '<th>' . $roomName . '</th>';
+                echo '<th>' . $lightStatus . '</th>';
+                echo '</tr>';
+              }
+
+              echo '</tbody>';
+              echo '</table>';
+              echo '</div>';
+            } else {
+              echo '<div class="text-center">No data available</div>';
+            }
+
+            ?>
+
+          </div>
       </div>
-      <h2 style="text-decoration-line: underline;margin-top: 4rem;">Time the lights are turned off: </h2>
-      <h3 style="text-align: center;">
-        Kitchen: 19.04.2023 || 16.24
-      </h3>
-      <h3 style="text-align: center;">
-        Living Room: 18.04.2023 || 01.11
-      </h3>
-      <h3 style="text-align: center;">
-        Bathroom: 19.04.2023 || 03.37
-      </h3>
-      <h3 style="text-align: center;">
-        Bedroom: 18.04.2023 || 00.57
-      </h3>
+      <h2 style="text-decoration-line: underline;margin-top: 4rem;">Time the lights are switched: </h2>
+      <div style="justify-content: space-between;">
+        <h3 style=" text-align: center;">
+          <h5>
+            <?php echo file_get_contents('log.txt'); ?>
+          </h5>
+        </h3>
+      </div>
     </div>
     <div id="eleccon1">
       <h1>Electronic Devices</h1>
-      <div id="devices">
-        <h2>Television</h2>
-        <label class="switch" style="margin-left: 9rem;">
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label>
+      <div style="margin-top: 10%;">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+          .room-temperature-table {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Transparent white background */
+            margin-top: 5%;
+          }
 
-      </div>
-      <div id="devices">
-        <h2>Kettle</h2>
-        <label class="switch" style="margin-left: 12.75rem;">
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label>
+          .room-temperature-table td {
+            text-align: center;
+            vertical-align: middle;
+          }
+        </style>
+        </head>
 
-      </div>
-      <div id="devices">
-        <h2>Dishwasher</h2>
-        <label class="switch" style="margin-left: 8.5rem;">
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label>
+        <body>
+          <div class="container">
 
-      </div>
-      <div id="devices">
-        <h2>Oven</h2>
-        <label class="switch" style="margin-left: 12.25rem;">
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label>
 
-      </div>
-      <div id="devices">
-        <h2>Washing Machine</h2>
-        <label class="switch" style="margin-left: 4rem;">
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label>
+            <?php
+            // Fetch the current temperature for all rooms from the database
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "homeautomationsystem";
 
-      </div>
-      <div id="devices">
-        <h2>Vacuum Cleaner</h2>
-        <label class="switch" style="margin-left: 4.25rem;">
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label>
+            // Create a connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
+            // Check connection
+            if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Fetch the current temperature for all rooms
+            $sql = "SELECT elecdevices, status FROM electronicdevices";
+            $result = $conn->query($sql);
+
+            // Display the temperature dashboard
+            if ($result && $result->num_rows > 0) {
+              echo '<div class="table-responsive">';
+              echo '<table class="table room-temperature-table">';
+              echo '<thead>';
+              echo '</thead>';
+              echo '<tbody>';
+
+              // Iterate over the rows and display the data
+              while ($row = $result->fetch_assoc()) {
+                $roomName = $row['elecdevices'];
+                $currentLight = $row['status'];
+                $lightStatus = ($currentLight == 1) ? 'On' : 'Off';
+
+                echo '<tr>';
+                echo '<th>' . $roomName . '</th>';
+                echo '<th>' . $lightStatus . '</th>';
+                echo '</tr>';
+              }
+
+              echo '</tbody>';
+              echo '</table>';
+              echo '</div>';
+            } else {
+              echo '<div class="text-center">No data available</div>';
+            }
+
+            ?>
+
+          </div>
       </div>
-      <h2 style="text-decoration-line: underline;margin-top: 0.5rem;">Time the electronic devices are turned off: </h2>
-      <h3 style="text-align: center;">
-        Television: 16.04.2023 || 21.51
-      </h3>
-      <h3 style="text-align: center;">
-        Kettle: 17.04.2023 || 12.11
-      </h3>
-      <h3 style="text-align: center;">
-        Dishwasher: 17.04.2023 || 23.42
-      </h3>
-      <h3 style="text-align: center;">
-        Oven: 19.04.2023 || 15.31
-      </h3>
-      <h3 style="text-align: center;">
-        Washing Machine: 17.04.2023 || 21.04
-      </h3>
-      <h3 style="text-align: center;">
-        Robotic Vacuum Cleaner: 20.04.2023 || 18.53
-      </h3>
+      <h2 style="text-decoration-line: underline;margin-top: 4rem;">Time the devices' status are switched: </h2>
+      <div style="justify-content: space-between;">
+        <h3 style=" text-align: center;">
+          <h4>
+            <?php echo file_get_contents('logdevice.txt'); ?>
+          </h4>
+        </h3>
+      </div>
     </div>
   </div>
   <div style="display: flex;">
