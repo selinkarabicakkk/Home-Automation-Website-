@@ -260,13 +260,87 @@
     <div id="aircon2">
       <h1>Air Conditioner</h1>
       <div style="margin-top: 10%;">
-        <h2 style="text-align: center;">Temperature of the house:</h2>
-        <input style="margin: auto;" id=celciusinput type=number value="23" min=15 max=45>
+        <h2 style="text-align: center;">Current Air Conditioner Settings</h2>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+          .room-temperature-table {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Transparent white background */
+            margin-top: 5%;
+          }
+
+          .room-temperature-table td {
+            text-align: center;
+            vertical-align: middle;
+          }
+        </style>
+        </head>
+
+        <body>
+          <div class="container">
+
+
+            <?php
+            // Fetch the current temperature for all rooms from the database
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "homeautomationsystem";
+
+            // Create a connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Fetch the current temperature for all rooms
+            $sql = "SELECT Room_Name, airCon FROM rooms";
+            $result = $conn->query($sql);
+
+            // Display the temperature dashboard
+            if ($result && $result->num_rows > 0) {
+              echo '<div class="table-responsive">';
+              echo '<table class="table room-temperature-table">';
+              echo '<thead>';
+              // echo '<tr>';
+              // echo '<th>Room</th>';
+              // echo '<th>Current Temperature</th>';
+              // echo '</tr>';
+              echo '</thead>';
+              echo '<tbody>';
+
+              // Iterate over the rows and display the data
+              while ($row = $result->fetch_assoc()) {
+                $roomName = $row['Room_Name'];
+                $currentTemperature = $row['airCon'];
+
+                echo '<tr>';
+                echo '<th>' . $roomName . '</th>';
+                echo '<th>' . $currentTemperature . '°C</th>';
+                echo '</tr>';
+              }
+
+              echo '</tbody>';
+              echo '</table>';
+              echo '</div>';
+            } else {
+              echo '<div class="text-center">No data available</div>';
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
+
+          </div>
+
       </div>
-      <div style="margin-top: 10%;">
-        <h2 style="text-align: center;">Temperature of the air conditioner:</h2>
-        <input style="margin: auto;" id=celciusinput type=number value="23" min=15 max=45>
-      </div>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </div>
   </div>
   <div style="display: flex;">

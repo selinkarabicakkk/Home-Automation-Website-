@@ -33,39 +33,6 @@ if (isset($_POST['submit'])) {
   }
 }
 
-// Check if the form is submitted
-if (isset($_POST['submit'])) {
-  // Get the room name and temperature value from the form
-  $roomName = $_POST['room'];
-  $temperature = $_POST['temperature'];
-
-  // Prepare and execute the SQL query to update the temperature
-  $sqllight = "SELECT Light FROM rooms WHERE Room_Name = '$roomName'";
-  $sqltemp = "UPDATE rooms SET Temperature = $temperature WHERE Room_Name = '$roomName'";
-
-  if ($connection->query($sql) === TRUE) {
-    echo "Temperature updated successfully";
-  } else {
-    echo "Error updating temperature: " . $connection->error;
-  }
-
-}
-
-// Check for query errors
-if (!$result) {
-  die("Query failed: " . $connection->error);
-}
-// Fetch and display the data
-while ($row = $result->fetch_assoc()) {
-  // Access individual columns by their names
-  $roomName = $row['Room_Name'];
-  $roomTemperature = $row['Temperature'];
-  $roomLight = $row['Light'];
-  $roomCamera = $row['Camera'];
-  $aircon = $row['airCon'];
-
-}
-
 
 // DATAYI CEKTIGIN VE GOSTERDIGIN YER
 function getRoomTemperature($roomName)
@@ -87,22 +54,26 @@ function getRoomTemperature($roomName)
 }
 
 
-if ($result->num_rows > 0) {
-  $row = $result->fetch_assoc();
-  // $currentValue = $row["light"];
+// $roomlight = $_POST['rooms'];
+// $lightStatus = $_POST['Light'];
 
-  // // Toggle the value of light
-  // $newLightsValue = !$currentValue;
 
-  // Update the light value in the database
-  $updateSql = "UPDATE rooms SET light = 1 WHERE Room_Name = 'LivingRoom'";
-  if ($connection->query($updateSql) === TRUE) {
-    echo "Lights in $roomName switched successfully";
-  } else {
-    echo "Error updating lights: " . $connection->error;
-  }
-}
+// $room = $_POST['room'];
+// $lightStatus = $_POST['light'];
+// // Update the light status in the database
+// $sql2 = "UPDATE rooms SET Light = 0 WHERE Room_Name = 'Kitchen'";
 
+// if ($connection->query($sql2) === TRUE) {
+//   echo "Light status updated successfully.";
+// } else {
+//   echo "Error updating light status: " . $connection->error;
+// }
+
+// // Log the event to a text file
+// $logMessage = "$room's Light is " . ($lightStatus == 1 ? "on" : "off") . " at " . date("d.m.y H:i") . PHP_EOL;
+// $logFile = "log.txt";
+
+// file_put_contents($logFile, $logMessage, FILE_APPEND | LOCK_EX);
 
 ?>
 
@@ -170,6 +141,37 @@ if ($result->num_rows > 0) {
 
 <body>
 
+  <head>
+    <title>Light Controller</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h1>Light Controller</h1>
+      <form method="POST" action="">
+        <div class="form-group">
+          <label for="room">Select a room:</label>
+          <select class="form-control" name="room" id="room">
+            <option value="kitchen">Kitchen</option>
+            <option value="livingroom">Livingroom</option>
+            <option value="bedroom">Bedroom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="light">Light status:</label>
+          <select class="form-control" name="light" id="light">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Light</button>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
   <div id="headbar">
     <div id="clockdate">
       <div class="clockdate-wrapper">
@@ -257,153 +259,147 @@ if ($result->num_rows > 0) {
   </div>
   <div style="display: flex;">
     <div id="lightingcon1">
-      <h1>Lighting</h1>
+      <h1>Lighting Controller</h1>
       <p>You can control the lighting system.</p>
-      <div id="rooms">
-        <h2 style="margin-top: 1rem;">Kitchen</h2>
-        <main>
-          <input class="l" type="checkbox">
 
-        </main>
-      </div>
-      <form id="lightForm" action="consumerprofile.php" method="POST">
+      <head>
+        <title>Light Controller</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+      </head>
 
-        <div id="rooms">
-          <h2>Toggle Lights</h2>
-          <div class="switch">
-            <input type="checkbox" id="lightsSwitch" name="lightsSwitch">
-            <label class="slider round" for="lightsSwitch"></label>
-          </div>
-          <!-- <h2 style="margin-top: 1rem;">Living Room</h2>
-            <form method="POST" action="">
-            <input type="checkbox" id="lightsSwitch" name="lightsSwitch">
-            <label class="slider round" for="lightsSwitch"></label> -->
-          <!-- <input type="hidden" name="room" value="Kitchen">
-            <input type="checkbox" id="lightsSwitch" name="lightsSwitch" onchange="this.form.submit()"> -->
-          <!-- <label class="slider round" for="lightsSwitch"></label> -->
-      </form>
+      <body>
+        <div class="container mt-2">
+          <form method="POST" action="light_controller.php">
+            <div class="form-group">
+              <label for="room">Select a room:</label>
+              <select class="form-control" name="room" id="room">
+                <option value="kitchen">Kitchen</option>
+                <option value="livingroom">Livingroom</option>
+                <option value="bedroom">Bedroom</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="light">Light status:</label>
+              <select class="form-control" name="light" id="light">
+                <option value="0">Off</option>
+                <option value="1">On</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Light</button>
+          </form>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+      </body>
     </div>
-    <div id="rooms">
-      <h2 style="margin-top: 1rem;">Bathroom</h2>
-      <main>
-        <input class="l" type="checkbox">
-      </main>
-    </div>
-    <div id="rooms">
-      <h2 style="margin-top: 1rem;">Bedroom</h2>
-      <main>
-        <input class="l" type="checkbox">
-      </main>
-    </div>
-    </form>
-  </div>
-  <div id="aircon2">
-    <h1>Air Conditioner</h1>
-    <p style="margin-bottom: 10px;">You can decrease or increase the temperature of the house by controlling the air
-      conditioner from here.</p>
-    <title>Update Room Temperature</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    </head>
-
-    <body>
-      <div class="container">
-        <form method="POST" action="">
-          <div class="form-group">
-            <label for="room">Select Room:</label>
-            <select class="form-control" name="room" id="room">
-              <option value="Kitchen">Kitchen</option>
-              <option value="Livingroom">Livingroom</option>
-              <option value="Bedroom">Bedroom</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="temperature">Enter Temperature:</label>
-            <input type="number" class="form-control" name="temperature" id="temperature">
-          </div>
-          <button type="submit" class="btn btn-primary" name="submit">Update</button>
-        </form>
-
-      </div>
+    <div id="aircon2">
+      <h1>Air Conditioner</h1>
+      <p style="margin-bottom: 10px;">You can decrease or increase the temperature of the house by controlling the air
+        conditioner from here.</p>
+      <title>Update Room Temperature</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <style>
-        .room-temperature-table {
-          width: 100%;
-          background-color: rgba(255, 255, 255, 0.7);
-          /* Transparent white background */
-          margin-top: 5%;
-        }
-
-        .room-temperature-table td {
-          text-align: center;
-          vertical-align: middle;
-        }
-      </style>
       </head>
 
       <body>
         <div class="container">
-
-
-          <?php
-          // Fetch the current temperature for all rooms from the database
-          $servername = "localhost";
-          $username = "root";
-          $password = "";
-          $dbname = "homeautomationsystem";
-
-          // Create a connection
-          $conn = new mysqli($servername, $username, $password, $dbname);
-
-          // Check connection
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
-
-          // Fetch the current temperature for all rooms
-          $sql = "SELECT Room_Name, Temperature FROM rooms";
-          $result = $conn->query($sql);
-
-          // Display the temperature dashboard
-          if ($result && $result->num_rows > 0) {
-            echo '<div class="table-responsive">';
-            echo '<table class="table room-temperature-table">';
-            echo '<thead>';
-            // echo '<tr>';
-            // echo '<th>Room</th>';
-            // echo '<th>Current Temperature</th>';
-            // echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-
-            // Iterate over the rows and display the data
-            while ($row = $result->fetch_assoc()) {
-              $roomName = $row['Room_Name'];
-              $currentTemperature = $row['Temperature'];
-
-              echo '<tr>';
-              echo '<th>' . $roomName . '</th>';
-              echo '<th>' . $currentTemperature . '°C</th>';
-              echo '</tr>';
-            }
-
-            echo '</tbody>';
-            echo '</table>';
-            echo '</div>';
-          } else {
-            echo '<div class="text-center">No data available</div>';
-          }
-
-          // Close the database connection
-          $conn->close();
-          ?>
+          <form method="POST" action="">
+            <div class="form-group">
+              <label for="room">Select Room:</label>
+              <select class="form-control" name="room" id="room">
+                <option value="Kitchen">Kitchen</option>
+                <option value="Livingroom">Livingroom</option>
+                <option value="Bedroom">Bedroom</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="temperature">Enter Temperature:</label>
+              <input type="number" class="form-control" name="temperature" id="temperature">
+            </div>
+            <button type="submit" class="btn btn-primary" name="submit">Update</button>
+          </form>
 
         </div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+          .room-temperature-table {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Transparent white background */
+            margin-top: 5%;
+          }
 
-  </div>
+          .room-temperature-table td {
+            text-align: center;
+            vertical-align: middle;
+          }
+        </style>
+        </head>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <body>
+          <div class="container">
+
+
+            <?php
+            // Fetch the current temperature for all rooms from the database
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "homeautomationsystem";
+
+            // Create a connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+              die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Fetch the current temperature for all rooms
+            $sql = "SELECT Room_Name, Temperature FROM rooms";
+            $result = $conn->query($sql);
+
+            // Display the temperature dashboard
+            if ($result && $result->num_rows > 0) {
+              echo '<div class="table-responsive">';
+              echo '<table class="table room-temperature-table">';
+              echo '<thead>';
+              // echo '<tr>';
+              // echo '<th>Room</th>';
+              // echo '<th>Current Temperature</th>';
+              // echo '</tr>';
+              echo '</thead>';
+              echo '<tbody>';
+
+              // Iterate over the rows and display the data
+              while ($row = $result->fetch_assoc()) {
+                $roomName = $row['Room_Name'];
+                $currentTemperature = $row['Temperature'];
+
+                echo '<tr>';
+                echo '<th>' . $roomName . '</th>';
+                echo '<th>' . $currentTemperature . '°C</th>';
+                echo '</tr>';
+              }
+
+              echo '</tbody>';
+              echo '</table>';
+              echo '</div>';
+            } else {
+              echo '<div class="text-center">No data available</div>';
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
+
+          </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </div>
 </div>
